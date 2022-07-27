@@ -9,7 +9,6 @@
 // 4. Usethe'checkWinner'functiontodeterminethewinnerforbothData1and Data 2
 // 5. Ignoredrawsthistime
 'use strict'
-
 const calcAverage = (score_1,score_2,score_3) => (score_1 + score_2 + score_3)/3;
 const checkWinner = function (avgDolhins,avgKoalas) {
     if(avgDolhins > 2*avgKoalas){
