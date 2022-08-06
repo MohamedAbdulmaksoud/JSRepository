@@ -35,12 +35,32 @@ const restaurant = {
     );
   },
 };
+
+/***************************
+ * LOGICAL ASSIGNMENT OPERATORS
+ ***************************/
+const rest1 = {
+  name: "Capri",
+  numGuests: 20,
+};
+const rest2 = {
+  name: "La Piazza",
+  owner: "Giovanni Rossi",
+};
+//OR assignment operator
+rest1.numGuests ||= 10; //rest1.numGuests = rest1.numGuests || 10; Output of numGuests: 20
+rest2.numGuests ||= 10; // Output of numGuests: 10
+
+//nullish assignment operator (null or undefined)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
 // /***************************
 //  * NULLISH COALESCING OPERATOR (??)
 //  ***************************/
-restaurant.numGuests = 0;
-const guests = restaurant.numGuests ?? 10;
-console.log(guests);
+// restaurant.numGuests = 0;
+// const guests = restaurant.numGuests ?? 10;
+// console.log(guests);
 
 // /***************************
 //  * SHORT CIRCUITING (&& ||)
