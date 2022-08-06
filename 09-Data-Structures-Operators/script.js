@@ -11,37 +11,45 @@ const restaurant = {
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-  order: function (starterIndex, mainIndex) {
+  //ES6 Enhanced Object Literal
+  openingHours,
+  //No need for function keyword
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1} , ${ing2} and ${ing3}`
     );
   },
 };
+
 /***************************
- * FOR-OF LOOP
+ * ENHANCED OBJECT LITERAL
  ***************************/
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-for (const item of menu) console.log(item);
-for (const [item, element] of menu.entries())
-  console.log(`${item + 1}: ${element}`);
+const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+//compute property name instead of naming literally
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+// /***************************
+//  * FOR-OF LOOP
+//  ***************************/
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// for (const item of menu) console.log(item);
+// for (const [item, element] of menu.entries())
+//   console.log(`${item + 1}: ${element}`);
 
 // /***************************
 //  * LOGICAL ASSIGNMENT OPERATORS
