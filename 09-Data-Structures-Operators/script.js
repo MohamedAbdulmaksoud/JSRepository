@@ -29,9 +29,67 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1} , ${ing2} and ${ing3}`
+    );
+  },
 };
 
-//deconstructing array
+/*destructing objects
+--------------------------*/
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+//New Variable Names
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
+
+//Set default values for properties that do not exist, NB: There is no menu in restauraunt object
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+//Mutating Variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
+
+//Nested Objects
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
+
+//Copy Array
+const mainMenuCopy = [...restaurant.mainMenu]; //shallow copy ~= object.assign
+
+//Join 2 Arrays
+const fullMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log("fullMenu:", fullMenu);
+
+//Iterables
+const yasser = "Yasser";
+const letters = [...yasser];
+console.log(letters);
+
+const ingredients = [
+  prompt("Let's make pasta! Ingredient 1?"),
+  prompt("Ingredient 2?"),
+  prompt("Ingredient 3?"),
+];
+restaurant.orderPasta(...ingredients);
+
+//Objects
+const newRestaurant = { foundedIn: 2022, ...restaurant, founder: "Yasser" };
+console.log(newRestaurant);
+/*************************
+ * deconstructing array
+ **************************/
 const arr = [2, 3, 4];
 const [x, y, z] = arr;
 console.log(x, y, z);
