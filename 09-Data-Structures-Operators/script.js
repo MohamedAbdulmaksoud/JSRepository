@@ -35,33 +35,58 @@ const restaurant = {
     );
   },
 };
+
 /***************************
- * REST OPERATOR: OBJECTS (LEFT SIDE)
+ * SHORT CIRCUITING
  ***************************/
-let [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+console.log(3 || "Yasser"); //3
+console.log("" || "Yasser"); //Yasser
+console.log(true || 0); //true
+console.log(undefined || null); //null
+console.log(undefined || 0 || "" || "Hello" || 23 || null); //first truthy value
 
-//right side is an array of all menu items. left side is array destructing with REST
-const [pizza, , risotto, ...otherfood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherfood);
+//Both guest1 and guest2 expressions are equal. DO NOT WORK when numGuests = 0
+restaurant.numGuests = 23;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
 
-//Objects: use of {}
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
 
-//Functions
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
-  console.log(sum);
-};
-add(2, 3, 4, 5, 6, 7, 8, 9);
+console.log("------ AND ------");
+console.log(0 && "Jonas");
 
-const x = [23, 5, 6];
-add(...x);
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
+// /***************************
+//  * REST OPERATOR: OBJECTS (LEFT SIDE)
+//  ***************************/
+// let [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+
+// //right side is an array of all menu items. left side is array destructing with REST
+// const [pizza, , risotto, ...otherfood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherfood);
+
+// //Objects: use of {}
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
+
+// //Functions
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+//   console.log(sum);
+// };
+// add(2, 3, 4, 5, 6, 7, 8, 9);
+
+// const x = [23, 5, 6];
+// add(...x);
 
 // /***************************
 //  * SPREAD OPERATOR: OBJECTS (RIGHT SIDE)
