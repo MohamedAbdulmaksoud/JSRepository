@@ -35,31 +35,37 @@ const restaurant = {
     );
   },
 };
+// /***************************
+//  * NULLISH COALESCING OPERATOR (??)
+//  ***************************/
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests ?? 10;
+console.log(guests);
 
-/***************************
- * SHORT CIRCUITING
- ***************************/
-console.log(3 || "Yasser"); //3
-console.log("" || "Yasser"); //Yasser
-console.log(true || 0); //true
-console.log(undefined || null); //null
-console.log(undefined || 0 || "" || "Hello" || 23 || null); //first truthy value
+// /***************************
+//  * SHORT CIRCUITING (&& ||)
+//  ***************************/
+// console.log(3 || "Yasser"); //3
+// console.log("" || "Yasser"); //Yasser
+// console.log(true || 0); //true
+// console.log(undefined || null); //null
+// console.log(undefined || 0 || "" || "Hello" || 23 || null); //first truthy value
 
-//Both guest1 and guest2 expressions are equal. DO NOT WORK when numGuests = 0
-restaurant.numGuests = 23;
-const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guest1);
+// //Both guest1 and guest2 expressions are equal. DO NOT WORK when numGuests = 0
+// restaurant.numGuests = 23;
+// const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guest1);
 
-const guest2 = restaurant.numGuests || 10;
-console.log(guest2);
+// const guest2 = restaurant.numGuests || 10;
+// console.log(guest2);
 
-console.log("------ AND ------");
-console.log(0 && "Jonas");
+// console.log("------ AND ------");
+// console.log(0 && "Jonas");
 
-if (restaurant.orderPizza) {
-  restaurant.orderPizza("mushrooms", "spinach");
-}
-restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza("mushrooms", "spinach");
+// }
+// restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 // /***************************
 //  * REST OPERATOR: OBJECTS (LEFT SIDE)
 //  ***************************/
