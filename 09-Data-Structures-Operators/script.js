@@ -35,25 +35,32 @@ const restaurant = {
     );
   },
 };
-
 /***************************
- * LOGICAL ASSIGNMENT OPERATORS
+ * FOR-OF LOOP
  ***************************/
-const rest1 = {
-  name: "Capri",
-  numGuests: 20,
-};
-const rest2 = {
-  name: "La Piazza",
-  owner: "Giovanni Rossi",
-};
-//OR assignment operator
-rest1.numGuests ||= 10; //rest1.numGuests = rest1.numGuests || 10; Output of numGuests: 20
-rest2.numGuests ||= 10; // Output of numGuests: 10
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of menu) console.log(item);
+for (const [item, element] of menu.entries())
+  console.log(`${item + 1}: ${element}`);
 
-//nullish assignment operator (null or undefined)
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// /***************************
+//  * LOGICAL ASSIGNMENT OPERATORS
+//  ***************************/
+// const rest1 = {
+//   name: "Capri",
+//   numGuests: 20,
+// };
+// const rest2 = {
+//   name: "La Piazza",
+//   owner: "Giovanni Rossi",
+// };
+// //OR assignment operator
+// rest1.numGuests ||= 10; //rest1.numGuests = rest1.numGuests || 10; Output of numGuests: 20
+// rest2.numGuests ||= 10; // Output of numGuests: 10
+
+// //nullish assignment operator (null or undefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
 // /***************************
 //  * NULLISH COALESCING OPERATOR (??)
