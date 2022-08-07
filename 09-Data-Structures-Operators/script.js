@@ -42,28 +42,44 @@ const restaurant = {
     );
   },
 };
+
 /***************************
- * OPTIONAL CHAINING
+ * LOOPING OBJECTS
  ***************************/
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open);
-//WITH optional chaining
-console.log(restaurant.openingHours?.mon?.open);
+//property NAMES
+const properties = Object.keys(openingHours);
+console.log(properties);
 
-for (const day of weekdays) {
-  const open = restaurant.openingHours[day]?.open ?? "closed";
-  console.log(`On ${day}, we open at ${open}`);
-}
+//property VALUES
+const values = Object.values(openingHours);
+console.log(values);
 
-//Methods
-console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
-console.log(restaurant.orderRisoto?.(0, 1) ?? "Method does not exist");
+//Entire Objects
+const entries = Object.entries(openingHours);
+for (const [key, { open, close }] of entries)
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+// /***************************
+//  * OPTIONAL CHAINING
+//  ***************************/
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
+// //WITH optional chaining
+// console.log(restaurant.openingHours?.mon?.open);
 
-//Arrays
-const users = [{ name: "Yasser", email: "mohamed@gmail.com" }];
-const use = [];
-console.log(users[0]?.name ?? "User array empty"); //Yasser
-console.log(use[0]?.name ?? "User array empty");
+// for (const day of weekdays) {
+//   const open = restaurant.openingHours[day]?.open ?? "closed";
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+
+// //Methods
+// console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+// console.log(restaurant.orderRisoto?.(0, 1) ?? "Method does not exist");
+
+// //Arrays
+// const users = [{ name: "Yasser", email: "mohamed@gmail.com" }];
+// const use = [];
+// console.log(users[0]?.name ?? "User array empty"); //Yasser
+// console.log(use[0]?.name ?? "User array empty");
 
 // /***************************
 //  * FOR-OF LOOP
