@@ -1,22 +1,40 @@
 "use strict";
 // /***************************
-//  * REFERENCE VS. PRIMITAIVE
+//  * HIGHER ORDER FUNCTIONS
 //  ***************************/
-const flight = "LH123";
-const passenger = {
-  name: "Yasser",
-  passportNumber: "A27055694",
+const oneWord = function (str) {
+  return str.replace(/ /g, "").toLowerCase();
+};
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
 };
 
-const checkIn = function (flightNum, passenger) {
-  flightNum = "LH987";
-  passenger.name = "Mr. " + passenger.name;
-  if (passenger.passportNumber === "A27055694") alert("Checking In");
-  else alert("Wrong Passport!");
+//Higher Order Function
+const transformer = function (str, fn) {
+  console.log(`Original String: ${str}`);
+  console.log(`Transformed String: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
 };
-checkIn(flight, passenger);
-console.log(flight);
-console.log(passenger);
+transformer("Javascript is the best!", upperFirstWord);
+// // /***************************
+// //  * REFERENCE VS. PRIMITAIVE
+// //  ***************************/
+// const flight = "LH123";
+// const passenger = {
+//   name: "Yasser",
+//   passportNumber: "A27055694",
+// };
+
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = "LH987";
+//   passenger.name = "Mr. " + passenger.name;
+//   if (passenger.passportNumber === "A27055694") alert("Checking In");
+//   else alert("Wrong Passport!");
+// };
+// checkIn(flight, passenger);
+// console.log(flight);
+// console.log(passenger);
 
 // /***************************
 //  * DEFAULT PARAMETERS
