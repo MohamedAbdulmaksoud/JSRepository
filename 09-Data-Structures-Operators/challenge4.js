@@ -35,10 +35,15 @@ document.querySelector("button").addEventListener("click", function () {
     .value.toLowerCase()
     .split("\n");
   //split on underscore character (2 strings per entry)
+  let index = 1;
   for (const input of query) {
     const [first, second] = input.trim().split("_");
     console.log(
-      [first, second.replace(second[0], second[0].toUpperCase())].join("")
+      [first, second.replace(second[0], second[0].toUpperCase())]
+        .join("")
+        .padEnd(20, " ")
+        .padEnd(20 + index, "✅")
     );
+    index++;
   }
 });
