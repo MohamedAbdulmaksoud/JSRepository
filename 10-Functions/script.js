@@ -1,20 +1,60 @@
 "use strict";
 // /***************************
-//  * FUNCTIONS RETURNING FUNCTIONS
+//  * THE CALL AND APPLY METHODS
 //  ***************************/
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
+const lufthansa = {
+  airline: "Lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
 };
-const greeterHey = greet("Hey");
-greeterHey("Jonas");
-greeterHey("Steven");
-//Calling the function directly!
-greet("Hello")("Jonas");
-// Challenge: Rewritten using arrow functions
-const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
-greetArr("Hi")("Jonas");
+lufthansa.book(239, "Yasser Abdulamksoud");
+lufthansa.book(555, "Richard Arnold");
+
+const book = lufthansa.book;
+
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+};
+//Regular fcn call, where this points to undefined in strict mode
+//book(23, "Sarah Wilcox"); //Does not work
+
+//Using call() to invoke a function and specifying the context for 'this'
+book.call(eurowings, 23, "Sarah Wilcox");
+console.log(eurowings);
+book.call(lufthansa, 431, "Ryan Manucho");
+
+//Apply Methods
+const flightData = [583, "George Michael"];
+book.apply(eurowings, flightData);
+console.log(eurowings);
+
+//Apply no longer needed, can use call with spread operator instead
+book.call(eurowings, ...flightData);
+
+// // /***************************
+// //  * FUNCTIONS RETURNING FUNCTIONS
+// //  ***************************/
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+// const greeterHey = greet("Hey");
+// greeterHey("Jonas");
+// greeterHey("Steven");
+// //Calling the function directly!
+// greet("Hello")("Jonas");
+// // Challenge: Rewritten using arrow functions
+// const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+// greetArr("Hi")("Jonas");
 
 // // /***************************
 // //  * HIGHER ORDER FUNCTIONS
