@@ -1,22 +1,39 @@
 "use strict";
 // /***************************
-//  * HIGHER ORDER FUNCTIONS
+//  * FUNCTIONS RETURNING FUNCTIONS
 //  ***************************/
-const oneWord = function (str) {
-  return str.replace(/ /g, "").toLowerCase();
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
 };
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(" ");
-  return [first.toUpperCase(), ...others].join(" ");
-};
+const greeterHey = greet("Hey");
+greeterHey("Jonas");
+greeterHey("Steven");
+//Calling the function directly!
+greet("Hello")("Jonas");
+// Challenge: Rewritten using arrow functions
+const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+greetArr("Hi")("Jonas");
 
-//Higher Order Function
-const transformer = function (str, fn) {
-  console.log(`Original String: ${str}`);
-  console.log(`Transformed String: ${fn(str)}`);
-  console.log(`Transformed by: ${fn.name}`);
-};
-transformer("Javascript is the best!", upperFirstWord);
+// // /***************************
+// //  * HIGHER ORDER FUNCTIONS
+// //  ***************************/
+// const oneWord = function (str) {
+//   return str.replace(/ /g, "").toLowerCase();
+// };
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(" ");
+//   return [first.toUpperCase(), ...others].join(" ");
+// };
+
+// //Higher Order Function
+// const transformer = function (str, fn) {
+//   console.log(`Original String: ${str}`);
+//   console.log(`Transformed String: ${fn(str)}`);
+//   console.log(`Transformed by: ${fn.name}`);
+// };
+// transformer("Javascript is the best!", upperFirstWord);
 // // /***************************
 // //  * REFERENCE VS. PRIMITAIVE
 // //  ***************************/
