@@ -1,58 +1,63 @@
 "use strict";
-
-// // /***************************
-// //  * THE CALL AND APPLY METHODS
-// //  ***************************/
-const lufthansa = {
-  airline: "Lufthansa",
-  iataCode: "LH",
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
-lufthansa.book(239, "Yasser Abdulamksoud");
-lufthansa.book(555, "Richard Arnold");
-
-const book = lufthansa.book;
-
-const eurowings = {
-  airline: "Eurowings",
-  iataCode: "EW",
-  bookings: [],
-};
-// /***************************
-//  * THE BIND METHODS
+/***************************
+ * Immediately Invoked Function Expressions (IIFE)
+ ***************************/
+(function () {
+  console.log(`This will never run again`);
+})();
+//  /***************************
+//  * THE CALL AND APPLY METHODS
 //  ***************************/
-const bookEW = book.bind(eurowings);
-bookEW(23, "Mohamed Abdulmaksoud");
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iataCode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+// lufthansa.book(239, "Yasser Abdulamksoud");
+// lufthansa.book(555, "Richard Arnold");
 
-//Specific Bind Parameters
-const bookEW376 = book.bind(eurowings, 376);
-bookEW376("Erik Ten Hag");
-bookEW376("Raphael Varane");
+// const book = lufthansa.book;
 
-//With Event Listener
-lufthansa.planes = 300;
+// const eurowings = {
+//   airline: "Eurowings",
+//   iataCode: "EW",
+//   bookings: [],
+// };
+// // /***************************
+// //  * THE BIND METHODS
+// //  ***************************/
+// const bookEW = book.bind(eurowings);
+// bookEW(23, "Mohamed Abdulmaksoud");
 
-lufthansa.buyPlane = function () {
-  console.log(this);
-  this.planes++;
-  console.log(this.planes);
-};
-//remember that this in event handlers point to the element itself
-document.querySelector(".buy").addEventListener("click", lufthansa.buyPlane); //the function will not work
-//this should work after bind
-document
-  .querySelector(".buy")
-  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+// //Specific Bind Parameters
+// const bookEW376 = book.bind(eurowings, 376);
+// bookEW376("Erik Ten Hag");
+// bookEW376("Raphael Varane");
 
-//Partial Application
-const addTax = (rate, value) => value + value * rate;
-const addVAT = addTax.bind(null, 0.23);
+// //With Event Listener
+// lufthansa.planes = 300;
+
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+//   this.planes++;
+//   console.log(this.planes);
+// };
+// //remember that this in event handlers point to the element itself
+// document.querySelector(".buy").addEventListener("click", lufthansa.buyPlane); //the function will not work
+// //this should work after bind
+// document
+//   .querySelector(".buy")
+//   .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// //Partial Application
+// const addTax = (rate, value) => value + value * rate;
+// const addVAT = addTax.bind(null, 0.23);
 
 // //Regular fcn call, where this points to undefined in strict mode
 // //book(23, "Sarah Wilcox"); //Does not work
