@@ -104,11 +104,21 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //  * JOIN
 //  ***************************/
 // console.log(letters.join(" - "));
+// /***************************
+//  * Getting last array element
+//  ***************************/
+// const arr = [23, 11, 64];
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+// console.log(arr.at(-1));
 
 /***************************
- * Getting last array element
+ * FOR EACH
  ***************************/
-const arr = [23, 11, 64];
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
-console.log(arr.at(-1));
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
