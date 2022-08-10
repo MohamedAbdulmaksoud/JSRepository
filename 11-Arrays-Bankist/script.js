@@ -91,6 +91,33 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
+
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`;
+};
+
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = acc.movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = acc.movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * acc.interestRate) / 100)
+    .filter((int, i, arr) => {
+      // console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -176,5 +203,28 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movementsDescriptions);
 
 /***************************
- * MAP METHOD
+ * FILTER METHOD
  *************************/
+const arrayWithdrawal = movements.filter((mov) => mov < 0);
+console.log(arrayWithdrawal);
+
+/***************************
+ * REDUCE METHOD
+ *************************/
+console.log(movements);
+// accumulator -> SNOWBALL
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+// Maximum value
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
